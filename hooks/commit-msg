@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "\n"
+MSG=`awk '{printf("%s",$0)}' $1`
+if [[ $MSG =~ ^\[(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)\]\(?.*\)?:.*$ ]]
+then
+	echo -e "\033[32m 提交成功! \033[0m"
+else
+  echo -e "\033[31m 错误: 提交信息是不规则的！ \033[m"
+	echo -e "\033[31m      type 只能用以下类型之一 [feat,fix,docs,style,refactor,perf,test,build,ci,chore,revert] \033[m"
+	exit 1
+fi
